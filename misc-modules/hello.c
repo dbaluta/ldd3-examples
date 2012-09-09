@@ -3,17 +3,21 @@
  */                                                    
 #include <linux/init.h>
 #include <linux/module.h>
-MODULE_LICENSE("Dual BSD/GPL");
+#include <linux/kernel.h>
 
-static int hello_init(void)
+MODULE_LICENSE("Dual BSD/GPL");
+MODULE_AUTHOR("LDD3, Silviu-Mihai Popescu");
+MODULE_DESCRIPTION("'Hello World' module in LDD3, with modern practices.");
+
+static int __init hello_init(void)
 {
-	printk(KERN_ALERT "Hello, world\n");
+	pr_alert("Hello, world\n");
 	return 0;
 }
 
-static void hello_exit(void)
+static void __exit hello_exit(void)
 {
-	printk(KERN_ALERT "Goodbye, cruel world\n");
+	pr_alert("Goodbye, cruel world\n");
 }
 
 module_init(hello_init);
